@@ -20,3 +20,4 @@ Idea: User can input an address and we can convert that to latitude and longitud
 Weather Output
 We can define prompts based on output for example: 
 Expect a day of partly cloudy with rain
+  
