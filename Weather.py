@@ -1,4 +1,4 @@
-class weather: 
+class Weather: 
   def __init__(self, wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
     self.wind_speed = wind_speed
     self.wind_gust = wind_gust
