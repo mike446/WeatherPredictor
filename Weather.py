@@ -6,7 +6,7 @@ class Weather:
     self.humidity = humidity
     self.pressure = pressure
     self.temperature = temperature
-    self.precipitation = perciptation
+    self.precipitation = precipitation
 
 def __str__(self):
         return (f"Wind Speed: {self.wind_speed} m/s\n"
