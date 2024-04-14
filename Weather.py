@@ -1,5 +1,7 @@
 class Weather: 
-  def __init__(self, wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
+  def __init__(self, longitude, latitude, wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
+    self.longitude = longitude
+    self.latitude = latitude
     self.wind_speed = wind_speed
     self.wind_gust = wind_gust
     self.cloud_percentage = cloud_percentage
@@ -9,7 +11,9 @@ class Weather:
     self.precipitation = precipitation
 
 def __str__(self):
-        return (f"Wind Speed: {self.wind_speed} m/s\n"
+        return (f"Latitude: {self.latitude} \n" #(-90, 90)
+                f"Longitude: {self.longitude} \n" #(-180, 180)
+                f"Wind Speed: {self.wind_speed} m/s\n"
                 f"Wind Gust: {self.wind_gust} m/s\n"
                 f"Cloud Percentage: {self.cloud_percentage}%\n"
                 f"Humidity: {self.humidity}%\n"
