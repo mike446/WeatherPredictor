@@ -21,3 +21,6 @@ Weather Output
 - We can define prompts based on output for example: 
  Expect a day of partly cloudy with rain
   
+
+Checklist
+- first commit(test)
