@@ -54,11 +54,19 @@ def get_user_weather(location, api_key):
     if response.status_code == 200:
     # Parse the JSON response
         data = response.json()
-        print(data)
+        return data
     
     else:
-        print("Error:", response.status_code)
+        return "Error:" + response.status_code
 # latitude = 40.7128
 # longitude =-74.0060
 # location = (latitude, longitude)
-get_user_weather(get_user_location(api_key, q), api_key)
+data = (get_user_location(api_key, q), api_key)
+def parse_weather_data(data): 
+    if 'current' in data and 'weather' in data['current']:
+        return data['current']['weather'][0]['description']
+    else:
+        return "Weather data not available."
+
+weather_state = parse_weather_data(data)
+print("Todays Weather Status: " + weather_state)
