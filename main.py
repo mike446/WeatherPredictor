@@ -4,14 +4,14 @@
 import requests
 import os
 from dotenv import load_dotenv
+from Weather import Weather
 load_dotenv()
-
 api_key = os.getenv("API_KEY")
 city_name =  input("Enter City Name: ")
 state_code = input("Enter State Code: ")
 country_code = input("Enter Country Code: ")
 q = city_name + ', ' +  state_code + ', ' + country_code
-import requests
+
 
 def get_user_location(api_key, q):
     # Define the API endpoint URL
@@ -57,11 +57,12 @@ def get_user_weather(location, api_key):
         return data
     
     else:
-        return "Error:" + response.status_code
+        print("Error:", response.status_code)
 # latitude = 40.7128
 # longitude =-74.0060
 # location = (latitude, longitude)
-data = (get_user_location(api_key, q), api_key)
+data = get_user_weather(get_user_location(api_key, q), api_key)
+
 def parse_weather_data(data):
     current_data = data.get("current", {})
     if current_data:
@@ -75,6 +76,30 @@ def parse_weather_data(data):
         return wind_speed, wind_gust, cloud_coverage, humidity, pressure, temperature, precipitation
     else:
         return "Weather data not available."
+# a = parse_weather_data(data)
+# print(parse_weather_data(data))
+def create_weather_object(location):
+    data = get_user_weather(location, api_key)
 
+    if data:
+        wind_speed, wind_gust, cloud_coverage, humidity, pressure, temperature, precipitation = parse_weather_data(data)
+        # Create Weather object
+    
+        weather_obj = Weather(wind_speed, wind_gust, cloud_coverage, humidity, pressure, temperature - 273.15, precipitation)  # Convert temperature from Kelvin to Celsius
+        return weather_obj
+    else:
+        print("Weather data not available.")
 
-print(parse_weather_data(data))
+weather_obj = create_weather_object(location)
+
+if weather_obj:
+    # Print individual elements 
+    print("Wind Speed:", weather_obj.wind_speed, "m/s")
+    print("Wind Gust:", weather_obj.wind_gust, "m/s")
+    
+    print("Humidity:", weather_obj.humidity, "%")
+    print("Pressure:", weather_obj.pressure, "hPa")
+    print("Temperature:", weather_obj.temperature, "°C")
+    print("Precipitation:", weather_obj.precipitation, "mm")
+else:
+    print("Weather data not available.")
