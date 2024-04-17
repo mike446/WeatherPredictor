@@ -62,11 +62,19 @@ def get_user_weather(location, api_key):
 # longitude =-74.0060
 # location = (latitude, longitude)
 data = (get_user_location(api_key, q), api_key)
-def parse_weather_data(data): 
-    if 'current' in data and 'weather' in data['current']:
-        return data['current']['weather'][0]['description']
+def parse_weather_data(data):
+    current_data = data.get("current", {})
+    if current_data:
+        wind_speed = current_data.get("wind_speed", "N/A")  # Wind speed in meter/sec
+        wind_gust = current_data.get("wind_gust", "N/A")  # Wind gust in meter/sec
+        cloud_coverage = current_data.get("clouds", "N/A")  # Cloud coverage in percentage
+        humidity = current_data.get("humidity", "N/A")  # Humidity in percentage
+        pressure = current_data.get("pressure", "N/A")  # Pressure in hPa
+        temperature = current_data.get("temp", "N/A")  # Temperature in Kelvin
+        precipitation = current_data.get("rain", 0)  # Precipitation in mm
+        return wind_speed, wind_gust, cloud_coverage, humidity, pressure, temperature, precipitation
     else:
         return "Weather data not available."
 
-weather_state = parse_weather_data(data)
-print("Todays Weather Status: " + weather_state)
+
+print(parse_weather_data(data))
