@@ -1,7 +1,5 @@
 class Weather: 
-  def __init__(self, longitude, latitude, wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
-    self.longitude = longitude
-    self.latitude = latitude
+  def __init__(self, wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
     self.wind_speed = wind_speed
     self.wind_gust = wind_gust
     self.cloud_percentage = cloud_percentage
