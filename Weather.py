@@ -1,5 +1,5 @@
 class Weather: 
-  def __init__(self, wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
+  def __init__(self,  wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation):
     self.wind_speed = wind_speed
     self.wind_gust = wind_gust
     self.cloud_percentage = cloud_percentage
@@ -7,10 +7,9 @@ class Weather:
     self.pressure = pressure
     self.temperature = temperature
     self.precipitation = precipitation
-
+# https://www.kaggle.com/datasets/nelgiriyewithana/global-weather-repository/code
 def __str__(self):
-        return (f"Latitude: {self.latitude} \n" #(-90, 90)
-                f"Longitude: {self.longitude} \n" #(-180, 180)
+        return (
                 f"Wind Speed: {self.wind_speed} m/s\n"
                 f"Wind Gust: {self.wind_gust} m/s\n"
                 f"Cloud Percentage: {self.cloud_percentage}%\n"

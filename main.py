@@ -62,7 +62,7 @@ def get_user_weather(location, api_key):
 # longitude =-74.0060
 # location = (latitude, longitude)
 data = get_user_weather(get_user_location(api_key, q), api_key)
-
+#print(data)
 def parse_weather_data(data):
     current_data = data.get("current", {})
     if current_data:
@@ -82,10 +82,10 @@ def create_weather_object(location):
     data = get_user_weather(location, api_key)
 
     if data:
-        wind_speed, wind_gust, cloud_coverage, humidity, pressure, temperature, precipitation = parse_weather_data(data)
+        wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature, precipitation = parse_weather_data(data)
         # Create Weather object
     
-        weather_obj = Weather(wind_speed, wind_gust, cloud_coverage, humidity, pressure, temperature - 273.15, precipitation)  # Convert temperature from Kelvin to Celsius
+        weather_obj = Weather(wind_speed, wind_gust, cloud_percentage, humidity, pressure, temperature - 273.15, precipitation)  # Convert temperature from Kelvin to Celsius
         return weather_obj
     else:
         print("Weather data not available.")
@@ -96,10 +96,14 @@ if weather_obj:
     # Print individual elements 
     print("Wind Speed:", weather_obj.wind_speed, "m/s")
     print("Wind Gust:", weather_obj.wind_gust, "m/s")
-    
+    print("Cloud Percentage:", weather_obj.cloud_percentage, "%")
     print("Humidity:", weather_obj.humidity, "%")
     print("Pressure:", weather_obj.pressure, "hPa")
     print("Temperature:", weather_obj.temperature, "°C")
     print("Precipitation:", weather_obj.precipitation, "mm")
 else:
     print("Weather data not available.")
+
+
+
+#current 
